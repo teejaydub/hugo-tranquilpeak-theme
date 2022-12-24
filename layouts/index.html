@@ -8,6 +8,16 @@
         class="{{ with .Params.coverimage }}hasCover{{ end }}
                {{ if eq .Params.covermeta "out" }}hasCoverMetaOut{{ else }}hasCoverMetaIn{{ end }}
                {{ with .Params.coverCaption }}hasCoverCaption{{ end }}">
+        {{ with site.GetPage .Site.Params.welcomePage }}
+          <article class="post" id="top">
+            <div class="post-content markdown">
+              {{ partial "post/header.html" . }}
+              <div class="main-content-wrap">
+                {{ .Content }}
+              </div>
+            </div>
+          </article>
+        {{ end }}
         <section class="postShorten-group main-content-wrap">
           {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" site.Params.mainSections ) }}
           {{ range $paginator.Pages }}

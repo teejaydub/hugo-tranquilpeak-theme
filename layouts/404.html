@@ -1,9 +1,23 @@
 {{ partial "head.html" . }}
-<main class="posts">
-  <article class="post">
-    <h1>404 Not Found</h1>
-    <p>Sorry, but we couldn't find the page you're looking for.</p>
-    <p>Please head back <a href="/">home</a>.</p>
-  </article>
-</main>
-{{ partial "foot.html" . }}
+  <body>
+    <div id="blog">
+      {{ partial "header.html" . }}
+      {{ partial "sidebar.html" . }}
+      <div id="main" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
+        <article class="post" id="top">
+          <div class="post-content markdown">
+            <div class="post-header main-content-wrap">
+              <h1 class="post-title">
+                {{ $.Title }}
+              </h1>
+            </div>
+            <div class="main-content-wrap">
+              <p>Sorry, but the link you're following doesn't work.</p>
+              <p>Please head back <a href="/">home</a>.</p>
+            </div>
+          </div>
+        </article>
+        {{ partial "footer.html" . }}
+      </div>
+    </div>
+{{ partialCached "foot.html" . }}
