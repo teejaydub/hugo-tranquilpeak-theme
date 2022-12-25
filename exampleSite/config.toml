@@ -158,10 +158,15 @@ canonifyurls = true
   # TJW's additions
   # ---------------
   # Set the page whose content should go on the top of the Home page.
-  welcomePage = "/pages/hello"
+  # welcomePage = "/pages/hello"
 
   # Title for the new content/recent posts section on home page; if empty, don't list recent posts.
-  recentPostsTitle = "What's New"
+  recentPostsTitle = "Recent Posts"
+
+  # Extra CSS files to include, for customizing base styles.
+  # Put the corresponding files under static/css/ in your site folder.
+  # customCss = ["css/overrides.css"]
+  customCss = []
 
   # ---------------------
   # Sidebar configuration

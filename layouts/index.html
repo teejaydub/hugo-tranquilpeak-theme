@@ -20,7 +20,7 @@
         {{ end }}
         {{ if .Site.Params.recentPostsTitle }}
           <section class="postShorten-group main-content-wrap">
-            <h1>{{ .Site.Params.recentPostsTitle }}</h1>
+            <h1 class="section-divider">{{ .Site.Params.recentPostsTitle }}</h1>
             {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" site.Params.mainSections ) }}
             {{ range $paginator.Pages }}
               {{ .Render "summary" }}
