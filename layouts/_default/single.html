@@ -17,6 +17,7 @@
           {{ end }}
           <div class="post-content markdown">
             <div class="main-content-wrap">
+              {{ partial "audio-player.html" . }}
               {{ .Content }}
               {{ partial "post/gallery.html" . }}
             </div>
