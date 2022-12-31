@@ -40,7 +40,7 @@
       </a>
     {{ end }}
     <div class="postShorten-header">
-      <h1 class="postShorten-title">
+      <h1 class="postShorten-title {{ .Section }}-type">
       {{ with .Params.link }}
         <a class="link-unstyled" href="{{ . | absURL }}" aria-label="{{ if i18n "global.open_post" }}{{ i18n "global.open_post" }}: {{ .Title }}{{ end }}" target="_blank">
       {{ else }}
