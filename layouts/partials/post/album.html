@@ -9,3 +9,8 @@
     {{ end }}
   </span>
 {{ end }}
+
+{{ with .Params.playingTime }}
+  -
+  {{ math.Round ((time.ParseDuration .).Minutes) }} min
+{{ end }}
