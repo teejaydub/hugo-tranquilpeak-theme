@@ -8,16 +8,40 @@
         class="{{ with .Params.coverimage }}hasCover{{ end }}
                {{ if eq .Params.covermeta "out" }}hasCoverMetaOut{{ else }}hasCoverMetaIn{{ end }}
                {{ with .Params.coverCaption }}hasCoverCaption{{ end }}">
-        <section class="postShorten-group main-content-wrap">
-          <h1>{{ .Type }}</h1>
-          {{/* Iterate only over pages of the same type as this section. */}}
-          {{ $paginator := .Paginate (where .Data.Pages "Type" .Type) }}
-          {{ range $paginator.Pages }}
-            {{ .Render "summary" }}
-          {{ end }}
-          {{ partial "pagination.html" . }}
-        </section>
-        {{ partial "footer.html" . }}
+        {{ if .Content }}
+          <article class="post" id="top">
+            {{ with .Params.covercaption }}
+              <span class="post-header-cover-caption caption">{{ . | markdownify }}</span>
+            {{ end }}
+            {{ if or (not .Params.coverimage) (eq .Params.covermeta "out") }}
+              {{ partial "post/header.html" . }}
+            {{ end }}
+            <div class="post-content markdown">
+              <div class="main-content-wrap">
+                {{ partial "audio-player.html" . }}
+                {{ .Content }}
+                {{ partial "post/gallery.html" . }}
+              </div>
+            </div>
+            <div id="post-footer" class="post-footer main-content-wrap">
+              {{ partial "post/comment.html" . }}
+            </div>
+          </article>
+        {{ end }}
+        {{ if not .Params.dontListPages }}
+          <section class="postShorten-group main-content-wrap">
+            {{ if not .Content }}
+              <h1>{{ .Type }}</h1>
+            {{ end }}
+            {{/* Iterate only over pages of the same type as this section. */}}
+            {{ $paginator := .Paginate .Data.Pages }}
+            {{ range $paginator.Pages }}
+              {{ .Render "summary" }}
+            {{ end }}
+            {{ partial "pagination.html" . }}
+            {{ partial "footer.html" . }}
+          </section>
+        {{ end }}
       </div>
     </div>
 {{ partial "foot.html" . }}

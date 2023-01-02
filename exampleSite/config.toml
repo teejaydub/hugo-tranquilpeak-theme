@@ -166,6 +166,10 @@ canonifyurls = true
   # If true, take initial copyright date from post where available.
   autoCopyrightDate = true
 
+  # If you add an index page to a taxonomy term, its content will be shown above the page list on the term page.
+  # If you want to completely override the page list, set this in that index page.
+  # dontListPages = false
+
   # Extra CSS files to include, for customizing base styles.
   # Put the corresponding files under static/css/ in your site folder.
   # customCss = ["css/overrides.css"]
