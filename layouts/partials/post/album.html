@@ -1,0 +1,11 @@
+{{ with .Params.albums }}
+  -
+  {{ $count := len . }}
+  <span class="song-album-list-intro">album{{ if gt $count 1 }}s{{ end }}:</span>
+  <span class="song-album-list">
+    {{ range $ai, $a := .}}
+      {{ with $.Site.GetPage (path.Join "/albums" $a) }}
+      <a href="{{ .Permalink }}">{{ .Title }}</a>{{ end }}{{ if lt $ai (sub $count 1) }},{{ end }}
+    {{ end }}
+  </span>
+{{ end }}
