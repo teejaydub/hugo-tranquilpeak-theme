@@ -163,6 +163,9 @@ canonifyurls = true
   # Title for the new content/recent posts section on home page; if empty, don't list recent posts.
   recentPostsTitle = "Recent Posts"
 
+  # If true, take initial copyright date from post where available.
+  autoCopyrightDate = true
+
   # Extra CSS files to include, for customizing base styles.
   # Put the corresponding files under static/css/ in your site folder.
   # customCss = ["css/overrides.css"]
