@@ -33,11 +33,18 @@
             {{ if not .Content }}
               <h1>{{ .Type }}</h1>
             {{ end }}
-            {{/* Iterate only over pages of the same type as this section. */}}
-            {{ $paginator := .Paginate .Data.Pages }}
-            {{ range $paginator.Pages }}
-              {{ .Render "summary" }}
+
+            {{ if .Type }}
+              {{ $ordering := (printf "%s_%s_order" .Type .Name) | urlize }}
+              {{ range (.Paginate (.Pages.ByParam $ordering)).Pages }}
+                {{ .Render "summary" }}
+              {{ end }}
+            {{ else }}
+              {{ range .Paginator.Pages }}
+                {{ .Render "summary" }}
+              {{ end }}
             {{ end }}
+
             {{ partial "pagination.html" . }}
             {{ partial "footer.html" . }}
           </section>
