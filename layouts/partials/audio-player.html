@@ -1,7 +1,41 @@
-{{ if .Params.soundCloudTrack }}
+{{ with .Params.soundCloudTrack }}
   <div class="audio-player sound-cloud-player">
     <iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{ .Params.soundCloudTrack }}&color=%23006400&inverse=false&auto_play=false">
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{ . }}&color=%23006400&inverse=false&auto_play=false">
     </iframe>
   </div>
 {{ end }}
+{{ if or .Params.spotifyAlbum .Params.amazonAlbum }}
+  <div class="album-streaming-links">
+    {{ with .Params.amazonAlbum }}
+      <a href="https://music.amazon.com/albums/{{ . }}" target="_blank">
+        <i class="sidebar-button-icon fab fa-lg fa-amazon" aria-hidden="true"></i>
+        Amazon
+      </a>
+    {{ end }}
+    {{ with .Params.appleAlbum }}
+      <a href="https://music.apple.com/us/album/{{ . }}" target="_blank">
+        <i class="sidebar-button-icon fab fa-lg fa-apple" aria-hidden="true"></i>
+        Apple
+      </a>
+    {{ end }}
+    {{ with .Params.soundCloudAlbum }}
+      <a href="https://soundcloud.com/teejaydub/sets/{{ . }}" target="_blank">
+        <i class="sidebar-button-icon fab fa-lg fa-soundcloud" aria-hidden="true"></i>
+        SoundCloud
+      </a>
+    {{ end }}
+    {{ with .Params.spotifyAlbum }}
+      <a href="https://open.spotify.com/album/{{ . }}" target="_blank">
+        <i class="sidebar-button-icon fab fa-lg fa-spotify" aria-hidden="true"></i>
+        Spotify
+      </a>
+    {{ end }}
+    {{ with .Params.youTubeAlbum }}
+      <a href="https://music.youtube.com/playlist?list={{ . }}" target="_blank">
+        <i class="sidebar-button-icon fab fa-lg fa-youtube" aria-hidden="true"></i>
+        YouTube
+      </a>
+    {{ end }}
+  </div>
+{{ end}}
