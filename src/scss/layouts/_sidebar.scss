@@ -28,7 +28,9 @@
             display: block;
             margin:  0 auto;
         }
-        .sidebar-profile-name {
+        .sidebar-profile-name,
+        .sidebar-profile-name > a,
+        .sidebar-profile-name > a:active {
             font-size: 1.1em;
             color:     map-get($sidebar, color);
         }
