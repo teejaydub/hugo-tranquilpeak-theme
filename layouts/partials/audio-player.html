@@ -5,7 +5,7 @@
     </iframe>
   </div>
 {{ end }}
-{{ if or .Params.spotifyAlbum .Params.amazonAlbum }}
+{{ if or .Params.spotifyAlbum .Params.amazonAlbum .Params.soundCloudAlbum }}
   <div class="album-streaming-links">
     {{ with .Params.amazonAlbum }}
       <a href="https://music.amazon.com/albums/{{ . }}" target="_blank">
