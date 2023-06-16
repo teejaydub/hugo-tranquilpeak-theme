@@ -19,6 +19,12 @@
         Apple
       </a>
     {{ end }}
+    {{ with .Params.bandCampAlbum }}
+      <a href="https://timothyjohnweber.bandcamp.com/album/{{ . }}" target="_blank">
+        <i class="sidebar-button-icon fab fa-lg fa-bandcamp" aria-hidden="true"></i>
+        Bandcamp
+      </a>
+    {{ end }}
     {{ with .Params.soundCloudAlbum }}
       <a href="https://soundcloud.com/teejaydub/sets/{{ . }}" target="_blank">
         <i class="sidebar-button-icon fab fa-lg fa-soundcloud" aria-hidden="true"></i>
