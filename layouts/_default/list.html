@@ -19,6 +19,7 @@
             <div class="post-content markdown">
               <div class="main-content-wrap">
                 {{ partial "audio-player.html" . }}
+                {{ partial "audio-links.html" . }}
                 {{ if and .Params.thumbnailimage (not .Params.coverimage)}}
                   {{/* If there's no cover image but there is a thumbnail, show it. */}}
                   <img class="list-thumbnail" src="{{ .Params.thumbnailimage | absURL }}"/>
