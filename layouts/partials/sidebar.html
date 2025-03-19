@@ -1,6 +1,6 @@
 <nav id="sidebar" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
   <div class="sidebar-container">
-    {{ if $.Site.Author.name }}
+    {{ if $.Site.Params.Author.name }}
       <div class="sidebar-profile">
         {{ with ($.Scratch.Get "authorPicture") }}
           <a href="{{ if $.Site.Params.sidebar.profile.url }}{{ $.Site.Params.sidebar.profile.url }}{{ else }}{{ "/#about" }}{{ end }}" aria-label="{{ i18n "global.read_more_about_author"}}">
@@ -8,9 +8,9 @@
           </a>
         {{ end }}
         <h4 class="sidebar-profile-name"><a href="/">
-          {{ $.Site.Author.name }}
+          {{ $.Site.Params.Author.name }}
         </a></h4>
-        {{ with $.Site.Author.bio }}
+        {{ with $.Site.Params.Author.bio }}
           <h5 class="sidebar-profile-bio">{{ . | markdownify }}</h5>
         {{ end }}
       </div>
