@@ -76,7 +76,21 @@
   {{ if and (.Scratch.Get "thumbnailImage") (ne (.Scratch.Get "thumbnailImagePosition") "top")}}
     <a href="{{ .Permalink }}" aria-label="{{ if i18n "global.open_post" }}{{ i18n "global.open_post" }}: {{ .Title }}{{ end }}">
       <div class="postShorten-thumbnailimg">
-        <img alt="" src="{{ .Scratch.Get "thumbnailImage" }}"/>
+        {{ $imgPath := .Scratch.Get "thumbnailImage" }}
+        {{ $imgPath := path.Base $imgPath }}
+        {{ $resource := .Resources.GetMatch $imgPath }}
+        {{ if not $resource }}
+          {{ $resource = .Parent.Resources.Get $imgPath }}
+        {{ end }}
+
+        {{ if $resource }}
+          {{/* Generate a lightweight WebP thumbnail */}}
+          {{ $thumb := $resource.Resize "140x webp q75" }}
+          <img src="{{ $thumb.RelPermalink }}"/>
+        {{ else }}
+          {{/* Fallback to the original heavy file if Hugo asset lookup fails */}}
+          <img src="{{ .Scratch.Get "thumbnailImage" }}"/>
+        {{ end }}
       </div>
     </a>
   {{ end }}
