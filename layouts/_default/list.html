@@ -24,17 +24,19 @@
                   {{/* If there's no cover image but there is a thumbnail, show it, thumbnailed, and linked to the original. */}}
                   {{ $resource := .Resources.GetMatch .Params.thumbnailimage }}
                   {{ if not $resource }}
-                    No!
                     {{ $imgPath := path.Base .Params.thumbnailimage }}
                     {{ $resource = .Resources.GetMatch (add "*" (path.Base $imgPath)) }}
                   {{ end }}
                   {{ if $resource }}
                     {{ $thumb := $resource.Resize "240x webp q75" }}
-                    <img class="list-thumbnail" src="{{ $thumb.RelPermalink }}"/>
+                    <a href='{{ ($resource.Resize "1000x webp q90").RelPermalink }}'>
+                      <img class="list-thumbnail" src="{{ $thumb.RelPermalink }}"/>
+                    </a>
                   {{ else }}
                     {{/* Just link to the original image */}}
-                    Nope
-                    <img class="list-thumbnail" src="{{ .Params.thumbnailimage | absURL }}"/>
+                    <a href="{{ .Params.thumbnailimage | absURL }}">
+                      <img class="list-thumbnail" src="{{ .Params.thumbnailimage | absURL }}"/>
+                    </a>
                   {{ end }}
                 {{ end }}
                 {{ .Content }}
